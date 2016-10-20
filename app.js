@@ -28,6 +28,19 @@ app.get('/api/players', function(req, res){
     });
 });
 
+app.post('/api/players', function(req, res) {
+    var player = new Player();
+
+    player.name = req.body.name;
+    player.score = 0;
+
+    player.save(function(err) {
+        if (err)
+            res.send(err);
+        res.json({ message: 'Player created!' });
+    });
+})
+
 app.get('/api/players/:player_id', function(req, res){
     Player.findById(req.params.player_id, function(err, player) {
         if (err)
@@ -40,28 +53,35 @@ app.put('/api/players/:player_id', function(req, res){
     Player.findById(req.params.player_id, function(err, player) {
         if (err)
             res.send(err);
-        player.score = player.score + req.body.score;
+        player.name = req.body.name || player.name;
+        if(req.body.hit) {
+          player.score = player.score + 100;
+        }
 
         player.save(function(err) {
             if (err)
                 res.send(err);
             res.json({ message: 'Player updated!' });
         });
-        io.emit('chat message', player);
+        io.emit('reflect scores', player);
     });
 });
 
-app.get('/', function(req, res){
-  // res.sendfile('index.html');
+app.get('/', function(req, res) {
+  res.sendfile('start.html');
 });
 
-app.get('/players/:player_id', function(req, res){
+app.get('/players/:player_id', function(req, res) {
   res.sendfile('index.html');
 });
 
 io.on('connection', function(socket) {
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
+  socket.on('reflect scores', function(msg) {
+    io.emit('reflect scores', msg);
+  });
+
+  socket.on('start', function(msg) {
+    console.log(msg);
   });
 });
 

@@ -20,7 +20,7 @@
           console.log(err);
         })
       var socket = io();
-      socket.on('chat message', function(player) {
+      socket.on('reflect scores', function(player) {
         if(player._id == playerId) {
           setPlayerInfo(player);
         }
@@ -30,6 +30,11 @@
         document.getElementById('name').innerHTML = player.name;
         document.getElementById('score').innerHTML = player.score;
       }
+
+      // TODO: 60sカウントダウン
+      // カウントダウン開始時にAPI叩く
+      // カウントダウン終了時にAPI叩く
+      // 終了したら最初の画面に遷移
 </script>
 
   </body>

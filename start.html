@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+  </head>
+  <body>
+    <input id="name"></input>
+    <button id="start">START</button>
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
+
+    <script>
+      var socket = io();
+      document.getElementById('start').addEventListener('click', function(e) {
+        if(!document.getElementById('name').value.length) {
+          alert('名前を入力してください');
+        } else {
+          var name = document.getElementById('name').value
+          socket.emit('start', name);
+          axios.post('http://localhost:3000/api/players', {
+              name: name
+            })
+            .then(function(res) {
+              axios.get('http://localhost:3000/api/players')
+                .then(function(res) {
+                  res.data.reverse().forEach(function(player) {
+                    console.log(player.name)
+                    if(player.name == name) {
+                      window.location.href = 'http://localhost:3000/players/' + player._id;
+                    }
+                  });
+                })
+                .catch(function(err) {
+                  console.log(err);
+                })
+            })
+         }
+      })
+</script>
+
+  </body>
+</html>
+
