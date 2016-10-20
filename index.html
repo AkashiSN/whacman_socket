@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+  </head>
+  <body>
+    <span id="name"></span>
+    <span id="score">0</span>p
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script>
+      var socket = io();
+      socket.on('chat message', function(player) {
+        if(player._id == window.location.pathname.match(/\/players\/(.*)/)[1]) {
+          document.getElementById('name').innerHTML = player.name;
+          document.getElementById('score').innerHTML = player.score;
+        }
+      });
+</script>
+
+  </body>
+</html>
