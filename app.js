@@ -1,3 +1,4 @@
+var fs         = require('fs');
 var app        = require('express')();
 var http       = require('http').Server(app);
 var io         = require('socket.io')(http);
@@ -81,7 +82,13 @@ io.on('connection', function(socket) {
   });
 
   socket.on('start', function(msg) {
-    console.log(msg);
+    // TODO: ここでRasPiに向けてAPIたたく
+    console.log('start', msg);
+  });
+
+  socket.on('stop', function(msg) {
+    // TODO: ここでRasPiに向けてAPIたたく
+    console.log('stop', msg);
   });
 });
 

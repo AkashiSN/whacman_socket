@@ -6,6 +6,8 @@
   <body>
     <span id="name"></span>
     <span id="score">0</span>p
+    <br>
+    <span id="timer">60''00</span>
 
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
@@ -31,11 +33,34 @@
         document.getElementById('score').innerHTML = player.score;
       }
 
-      // TODO: 60sカウントダウン
+      function formatTime(mseconds) {
+        let msec = Math.floor(mseconds % 100)
+        let sec  = Math.floor(mseconds / 100)
+        if(msec < 10) { msec = '0' + msec }
+        if(sec < 10) { sec = '0' + sec }
+        return sec + "''" + msec
+      }
+
+      function countDown(count) {
+        socket.emit('start', 1);
+        var countup = function() {
+          document.getElementById('timer').innerHTML = formatTime(count--);
+        }
+        var id = setInterval(function() {
+          countup();
+          if(count < 0) {
+            clearInterval(id);
+            socket.emit('stop', 1);
+          }
+        }, 10);
+      }
+
+      countDown(6000);
+
+      // TODO:
       // カウントダウン開始時にAPI叩く
       // カウントダウン終了時にAPI叩く
-      // 終了したら最初の画面に遷移
-</script>
+    </script>
 
   </body>
 </html>
