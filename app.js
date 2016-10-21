@@ -5,9 +5,10 @@ var io         = require('socket.io')(http);
 var bodyParser = require('body-parser');
 
 // DBへの接続
+const MONGO_URL = process.env.MONGODB_URI;
 var mongoose      = require('mongoose');
 var autoIncrement = require("mongoose-auto-increment");
-var db = mongoose.connect('mongodb://localhost/jsonAPI');
+var db = mongoose.connect(MONGO_URL);
 autoIncrement.initialize(db);
 var PlayerSchema  = require('./models/player');
 PlayerSchema.pre("save", function(next){
@@ -92,6 +93,7 @@ io.on('connection', function(socket) {
   });
 });
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+var port = process.env.PORT || 3000;
+http.listen(port, function(){
+  console.log('listening on *:', port);
 });

@@ -18,16 +18,16 @@
         } else {
           var name = document.getElementById('name').value
           socket.emit('start', name);
-          axios.post('http://localhost:3000/api/players', {
+          axios.post('https://whacman-socket.herokuapp.com/api/players', {
               name: name
             })
             .then(function(res) {
-              axios.get('http://localhost:3000/api/players')
+              axios.get('https://whacman-socket.herokuapp.com/api/players')
                 .then(function(res) {
                   res.data.reverse().forEach(function(player) {
                     console.log(player.name)
                     if(player.name == name) {
-                      window.location.href = 'http://localhost:3000/players/' + player._id;
+                      window.location.href = 'https://whacman-socket.herokuapp.com/players/' + player._id;
                     }
                   });
                 })
