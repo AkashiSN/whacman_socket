@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var axios      = require('axios');
 
 // DBへの接続
-const MONGO_URL = process.env.MONGODB_URI;
+const MONGO_URL = process.env.MONGODB_URI || 'mongodb://localhost/jsonAPI';
 var mongoose      = require('mongoose');
 var autoIncrement = require("mongoose-auto-increment");
 var db = mongoose.connect(MONGO_URL);
@@ -67,6 +67,16 @@ app.put('/api/players/:player_id', function(req, res){
             res.json({ message: 'Player updated!' });
         });
         io.emit('reflect scores', player);
+    });
+});
+
+app.delete('/api/players/:player_id', function(req, res){
+    Player.remove({
+        _id: req.params.player_id
+    }, function(err, user) {
+        if (err)
+            res.send(err);
+        res.json({ message: 'Successfully deleted' });
     });
 });
 
