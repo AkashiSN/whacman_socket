@@ -3,6 +3,7 @@ var app        = require('express')();
 var http       = require('http').Server(app);
 var io         = require('socket.io')(http);
 var bodyParser = require('body-parser');
+var axios      = require('axios');
 
 // DBへの接続
 const MONGO_URL = process.env.MONGODB_URI;
@@ -84,11 +85,29 @@ io.on('connection', function(socket) {
 
   socket.on('start', function(msg) {
     // TODO: ここでRasPiに向けてAPIたたく
+    axios.post('https://whacman-node.herokuapp.com/api/timer', {
+        start: 1
+      })
+      .then(function(res) {
+        console.log('start success');
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
     console.log('start', msg);
   });
 
   socket.on('stop', function(msg) {
     // TODO: ここでRasPiに向けてAPIたたく
+    axios.post('https://whacman-node.herokuapp.com/api/timer', {
+        stop: 1
+      })
+      .then(function(res) {
+        console.log('stop success');
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
     console.log('stop', msg);
   });
 });
