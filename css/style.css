@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .global-header {
   height: 15%;
   background-color: #DB50C1;
@@ -56,7 +57,7 @@
           background: linear-gradient(to right, #E3B12C, #E9FF9A);
           height: 60px;
           color: #FFFFFF;
-          -webkit-text-stroke: 1px #000;
+          -webkit-text-stroke: 2px #000;
           font-size: 40px;
           line-height: 60px;
           text-align: center;
@@ -155,5 +156,108 @@ html {
 body {
   height: 100vh;
   margin: 0; }
+
+main #ranking-table {
+  width: 100%;
+  color: #FFFFFF;
+  border-spacing: 0;
+  list-style: none; }
+  main #ranking-table li {
+    background: #B7B7B7;
+    border-radius: 16px;
+    padding: 5px;
+    margin: 10px auto; }
+    main #ranking-table li:nth-of-type(1) .wrapper {
+      background-color: #776E35;
+      background-image: linear-gradient(-45deg, transparent 25%, #7B6732 25%, #7B6732 50%, transparent 50%, transparent 75%, #7B6732 75%, #7B6732); }
+      main #ranking-table li:nth-of-type(1) .wrapper:after {
+        box-shadow: -5px -30px 60px 0 rgba(64, 52, 28, 0.3) inset; }
+    main #ranking-table li:nth-of-type(1) .rank {
+      background-image: linear-gradient(-45deg, #E58C0C 25%, #FBB40C 25%, #FBB40C 50%, #E58C0C 50%, #E58C0C 75%, #FBB40C 75%, #FBB40C); }
+      main #ranking-table li:nth-of-type(1) .rank:before {
+        box-shadow: -2px -1px 2px 0 #FFE910 inset, 0px 20px 30px 0 #FFE910 inset; }
+    main #ranking-table li:nth-of-type(2) .wrapper {
+      background-color: #4C727F;
+      background-image: linear-gradient(-45deg, transparent 25%, #3A6575 25%, #3A6575 50%, transparent 50%, transparent 75%, #3A6575 75%, #3A6575); }
+      main #ranking-table li:nth-of-type(2) .wrapper:after {
+        box-shadow: -5px -30px 60px 0 rgba(80, 80, 80, 0.8) inset; }
+    main #ranking-table li:nth-of-type(2) .rank {
+      background-image: linear-gradient(-45deg, #2CA9F9 25%, #188BE4 25%, #188BE4 50%, #2CA9F9 50%, #2CA9F9 75%, #188BE4 75%, #188BE4); }
+      main #ranking-table li:nth-of-type(2) .rank:before {
+        box-shadow: -2px -1px 2px 0 #C6F9FD inset, 0px 20px 30px 0 #C6F9FD inset; }
+    main #ranking-table li:nth-of-type(3) .wrapper {
+      background-color: #6C4229;
+      background-image: linear-gradient(-45deg, transparent 25%, #6A3D26 25%, #6A3D26 50%, transparent 50%, transparent 75%, #6A3D26 75%, #6A3D26); }
+      main #ranking-table li:nth-of-type(3) .wrapper:after {
+        box-shadow: -5px -30px 60px 0 rgba(82, 48, 26, 0.8) inset; }
+    main #ranking-table li:nth-of-type(3) .rank {
+      background-image: linear-gradient(-45deg, #DE773C 25%, #CE6129 25%, #CE6129 50%, #DE773C 50%, #DE773C 75%, #CE6129 75%, #CE6129); }
+      main #ranking-table li:nth-of-type(3) .rank:before {
+        box-shadow: -2px -1px 2px 0 #E9995C inset, 0px 20px 30px 0 #E9995C inset; }
+  main #ranking-table .wrapper {
+    display: flex;
+    position: relative;
+    background-color: #565656;
+    border: 1px solid #010101;
+    border-radius: 12px;
+    padding: 10px;
+    background-image: linear-gradient(-45deg, transparent 25%, #505050 25%, #505050 50%, transparent 50%, transparent 75%, #505050 75%, #505050);
+    background-size: 16px 16px;
+    overflow: hidden; }
+    main #ranking-table .wrapper:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 40%;
+      z-index: 10;
+      height: 100%;
+      width: 100%;
+      transform: skew(-80deg);
+      box-shadow: -5px -30px 60px 0 rgba(1, 1, 1, 0.2) inset; }
+    main #ranking-table .wrapper > * {
+      text-align: center; }
+    main #ranking-table .wrapper .rank {
+      flex: 1;
+      color: #010101;
+      display: inline-block;
+      border: 2px solid black;
+      border-radius: 4px;
+      padding: 5px 0;
+      position: relative;
+      font-size: 20px;
+      font-weight: bold;
+      z-index: 10;
+      text-shadow: 1px 1px 2px #FFFFFF;
+      background-image: linear-gradient(-45deg, #615D5C 25%, #505050 25%, #505050 50%, #615D5C 50%, #615D5C 75%, #505050 75%, #505050);
+      background-size: 16px 16px; }
+      main #ranking-table .wrapper .rank:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 4px;
+        box-shadow: -2px -1px 2px 0 #FFFFFF inset, 0px 20px 30px 0 #FFFFFF inset;
+        z-index: -10; }
+      main #ranking-table .wrapper .rank:after {
+        content: '位';
+        font-size: 14px;
+        position: absolute;
+        right: 4px;
+        bottom: 0;
+        text-shadow: 1px 1px 2px #FFFFFF; }
+    main #ranking-table .wrapper .name,
+    main #ranking-table .wrapper .message {
+      padding-left: 10px;
+      line-height: 40px;
+      z-index: 100; }
+    main #ranking-table .wrapper .name {
+      flex: 3;
+      letter-spacing: 1px;
+      font-weight: bold;
+      font-size: 18px; }
+    main #ranking-table .wrapper .message {
+      flex: 3; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'mixins';
 @import 'headers';
 @import 'main';
 @import 'start';
@@ -9,7 +10,131 @@ html {
   height: 100%;
 }
 
-body { 
+body {
   height: 100vh;
   margin: 0;
+}
+
+main {
+  #ranking-table {
+    width: 100%;
+    color: $white;
+    border-spacing: 0;
+    list-style: none;
+
+    li {
+      background: $gray;
+      border-radius: 16px;
+      padding: 5px;
+      margin: 10px auto;
+
+      &:nth-of-type(1) {
+        @include ranking(#776E35, #7B6732, rgba(#40341C, .3), #E58C0C, #FBB40C, #FFE910);
+      }
+
+      &:nth-of-type(2) {
+        @include ranking(#4C727F, #3A6575, rgba($dark-gray, .8), #2CA9F9, #188BE4, #C6F9FD);
+      }
+
+      &:nth-of-type(3) {
+        @include ranking(#6C4229, #6A3D26, rgba(#52301A, .8), #DE773C, #CE6129, #E9995C);
+      }
+    }
+
+    .wrapper {
+      display: flex;
+      position: relative;
+      background-color: #565656;
+      border: 1px solid $black;
+      border-radius: 12px;
+      padding: 10px;
+      background-image: linear-gradient(
+        -45deg,
+        transparent 25%,
+        #505050 25%, #505050 50%,
+        transparent 50%, transparent 75%,
+        #505050 75%, #505050
+      );
+      background-size: 16px 16px;
+      overflow: hidden;
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 40%;
+        z-index: 10;
+        height: 100%;
+        width: 100%;
+        transform: skew(-80deg);
+        box-shadow: -5px -30px 60px 0 rgba($black, .2) inset;
+      }
+
+      > * {
+        text-align: center;
+      }
+
+      .rank {
+        flex: 1;
+        color: $black;
+        display: inline-block;
+        border: 2px solid black;
+        border-radius: 4px;
+        padding: 5px 0;
+        position: relative;
+        font-size: 20px;
+        font-weight: bold;
+        z-index: 10;
+        text-shadow: 1px 1px 2px $white;
+        background-image: linear-gradient(
+          -45deg,
+          #615D5C 25%,
+          #505050 25%, #505050 50%,
+          #615D5C 50%, #615D5C 75%,
+          #505050 75%, #505050
+        );
+        background-size: 16px 16px;
+
+        &:before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          border-radius: 4px;
+          box-shadow: -2px -1px 2px 0 $white inset,
+                      0px 20px 30px 0 $white inset;
+          z-index: -10;
+        }
+
+        &:after {
+          content: '位';
+          font-size: 14px;
+          position: absolute;
+          right: 4px;
+          bottom: 0;
+          text-shadow: 1px 1px 2px $white;
+        }
+      }
+
+      .name,
+      .message {
+        padding-left: 10px;
+        line-height: 40px;
+        z-index: 100;
+      }
+
+      .name {
+        flex: 3;
+        letter-spacing: 1px;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .message {
+        flex: 3;
+      }
+    }
+  }
 }

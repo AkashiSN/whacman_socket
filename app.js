@@ -6,6 +6,18 @@ var io         = require('socket.io')(http);
 var bodyParser = require('body-parser');
 var axios      = require('axios');
 
+function sortByKey(data, key) {
+ data = data.sort(function(a, b) {
+    var x = a[key];
+    var y = b[key];
+    if(x > y) return -1;
+    if(x < y) return 1;
+    return 0;
+  });
+
+   return data;
+  }
+
 // DBへの接続
 const MONGO_URL = process.env.MONGODB_URI || 'mongodb://localhost/jsonAPI';
 var mongoose      = require('mongoose');
@@ -27,11 +39,19 @@ app.use('/css', express.static('css'));
 app.use('/js', express.static('js'));
 app.use('/images', express.static('images'));
 
-app.get('/api/players', function(req, res){
+app.get('/api/players', function(req, res) {
     Player.find(function(err, players) {
         if (err)
             res.send(err);
         res.json(players);
+    });
+});
+
+app.get('/api/players/ranking', function(req, res) {
+    Player.find(function(err, players) {
+        if (err)
+            res.send(err);
+        res.json(sortByKey(players, 'score'));
     });
 });
 
@@ -87,6 +107,10 @@ app.delete('/api/players/:player_id', function(req, res){
 
 app.get('/', function(req, res) {
   res.sendfile('start.html');
+});
+
+app.get('/players/ranking', function(req, res) {
+  res.sendfile('ranking.html');
 });
 
 app.get('/players/:player_id', function(req, res) {

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <header class="global-header">
+      <div class="header-wrapper">
+        <div class="header-content">
+          <div class="player-info">
+            <div class="message">チュウニズムだと思った？残念、whacmanでした！</div>
+            <div class="name">whacman</div>
+          </div>
+        </div>
+        <div class="header-content">
+          <div class="playing-info">
+            <img src="../images/speaker.png" class="speaker">
+            <div class="playing-wrapper">
+              <div class="playing">RANKING</div>
+            </div>
+            <img src="../images/speaker.png" class="speaker">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <ul id="ranking-table">
+      </ul>
+    </main>
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
+    <script src="../js/ranking.js"></script>
+  </body>
+</html>

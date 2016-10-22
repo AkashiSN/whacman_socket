@@ -24,7 +24,7 @@ function escapeHTML(str) {
 
 function setPlayerInfo(player) {
   document.getElementById('js-name').innerHTML = escapeHTML(player.name);
-  document.getElementById('js-message').innerHTML = escapeHTML(player.message) || 'がんばるぞい！';
+  document.getElementById('js-message').innerHTML = escapeHTML(player.message || 'がんばるぞい！');
   document.getElementById('js-score').innerHTML = player.score.toLocaleString();
 }
 
