@@ -118,11 +118,17 @@ main {
         }
       }
 
+      .score,
       .name,
       .message {
         padding-left: 10px;
         line-height: 40px;
         z-index: 100;
+      }
+
+      .score {
+        flex: 0.5;
+        font-weight: bold;
       }
 
       .name {

@@ -247,11 +247,15 @@ main #ranking-table {
         right: 4px;
         bottom: 0;
         text-shadow: 1px 1px 2px #FFFFFF; }
+    main #ranking-table .wrapper .score,
     main #ranking-table .wrapper .name,
     main #ranking-table .wrapper .message {
       padding-left: 10px;
       line-height: 40px;
       z-index: 100; }
+    main #ranking-table .wrapper .score {
+      flex: 0.5;
+      font-weight: bold; }
     main #ranking-table .wrapper .name {
       flex: 3;
       letter-spacing: 1px;

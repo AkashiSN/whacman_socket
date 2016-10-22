@@ -47,13 +47,13 @@ function countDown(count) {
     if(count < 0) {
       clearInterval(id);
       socket.emit('stop', 1);
-      blink(timer, 10);
+      blinkAndDisplayRank(timer, 10);
       document.getElementById('js-clear').innerHTML = 'CLEAR!';
     }
   }, 10);
 }
 
-function blink(target, limit) {
+function blinkAndDisplayRank(target, limit) {
   var count = 0;
   var countup = function() {
     if(target.style.visibility == 'visible') {
@@ -67,8 +67,36 @@ function blink(target, limit) {
     countup();
     if(count > limit) {
       clearInterval(id);
+
+      var score = document.getElementById('js-score').innerHTML
+      axios.get(uri + '/api/players/ranking')
+        .then(function(res) {
+          score = parseInt(score.split(',').join('').trim());
+          res.data.some(function(player, i) {
+            if(player.score < score) {
+                ranknum = i
+                displayRank(ranknum, target)
+                return true
+            }
+          })
+        })
+        .catch(function(err) {
+          console.log(err);
+        })
     }
   }, 200);
+}
+
+function displayRank(ranknum, target) {
+   document.getElementById('timelimit').innerHTML = 'RANKING'
+   var unit = document.createElement('span')
+   unit.innerHTML = ' 位'
+   var rank = document.createElement('span')
+   rank.className = 'num'
+   rank.innerHTML = ranknum
+   rank.appendChild(unit)
+   target.innerHTML = ''
+   target.appendChild(rank)
 }
 
 countDown(6000);

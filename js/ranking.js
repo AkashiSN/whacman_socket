@@ -32,6 +32,9 @@ function setRanking(players) {
       rank.className = 'rank'
       var num = i + 1
       rank.innerHTML = num.toString()
+      var score = document.createElement('div')
+      score.className = 'score'
+      score.innerHTML = player.score
       var name = document.createElement('div')
       name.className = 'name'
       name.innerHTML = escapeHTML(player.name || '')
@@ -39,6 +42,7 @@ function setRanking(players) {
       message.className = 'message'
       message.innerHTML = escapeHTML(player.message || '')
       wrapper.appendChild(rank)
+      wrapper.appendChild(score)
       wrapper.appendChild(name)
       wrapper.appendChild(message)
       result.appendChild(wrapper)
