@@ -14,9 +14,17 @@ socket.on('reflect scores', function(player) {
   }
 });
 
+function escapeHTML(str) {
+  return str.replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+};
+
 function setPlayerInfo(player) {
-  document.getElementById('js-name').innerHTML = player.name;
-  document.getElementById('js-message').innerHTML = player.message || 'がんばるぞい！';
+  document.getElementById('js-name').innerHTML = escapeHTML(player.name);
+  document.getElementById('js-message').innerHTML = escapeHTML(player.message) || 'がんばるぞい！';
   document.getElementById('js-score').innerHTML = player.score.toLocaleString();
 }
 
