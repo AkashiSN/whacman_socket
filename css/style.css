@@ -1,0 +1,129 @@
+.global-header {
+  height: 15%;
+  background-color: #DB50C1;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  margin: auto 5%;
+  padding: 0 2%;
+  font-weight: bold;
+  position: relative; }
+  .global-header .header-wrapper {
+    display: flex;
+    position: absolute;
+    width: 95%;
+    top: 40%; }
+  .global-header .header-content {
+    flex: 2;
+    background-color: #E3B12C;
+    background: linear-gradient(#E9C928, #E3B12C);
+    border: 2px solid #010101;
+    border-radius: 3px;
+    margin-right: 20px; }
+    .global-header .header-content:last-child {
+      flex: 3;
+      margin-right: 0; }
+    .global-header .header-content .player-info {
+      border: 1px solid #010101;
+      background-color: #7C7132;
+      border-radius: 2px;
+      margin: 5px 30px; }
+      .global-header .header-content .player-info .message {
+        background-color: #FFFFFF;
+        margin: 5px 10px;
+        padding: 5px;
+        border-radius: 2px;
+        color: #010101;
+        font-size: small;
+        text-align: center;
+        height: 17px;
+        overflow: hidden; }
+      .global-header .header-content .player-info .name {
+        margin: 5px 10px;
+        border-bottom: 2px solid #FFFFFF;
+        color: #FFFFFF;
+        text-align: center; }
+    .global-header .header-content .playing-info {
+      position: relative; }
+      .global-header .header-content .playing-info .playing-wrapper {
+        background-color: #010101;
+        position: absolute;
+        top: 0;
+        left: 67px;
+        right: 67px;
+        height: 60px;
+        padding: 10px 20px; }
+        .global-header .header-content .playing-info .playing-wrapper .playing {
+          background: linear-gradient(to right, #E3B12C, #E9FF9A);
+          height: 60px;
+          color: #FFFFFF;
+          -webkit-text-stroke: 1px #000;
+          font-size: 40px;
+          line-height: 60px;
+          text-align: center;
+          letter-spacing: 2px; }
+      .global-header .header-content .playing-info .speaker {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 80px; }
+        .global-header .header-content .playing-info .speaker:last-child {
+          position: absolute;
+          left: auto;
+          right: 0; }
+
+html {
+  background-color: #E3B12C;
+  background: linear-gradient(#E9C928, #E3B12C);
+  height: 100%; }
+
+body {
+  height: 100vh;
+  margin: 0; }
+
+main {
+  display: flex;
+  background-color: #010101;
+  margin: 80px auto;
+  padding: 0 5%;
+  position: relative; }
+  main:before, main:after {
+    content: '';
+    width: 100%;
+    height: 20px;
+    left: 0;
+    background-color: #010101;
+    position: absolute; }
+  main:before {
+    top: -25px; }
+  main:after {
+    bottom: -25px; }
+  main .character {
+    flex: 1;
+    position: relative; }
+    main .character img {
+      position: absolute;
+      width: 100%;
+      top: -60px;
+      left: -30px;
+      z-index: 100; }
+  main .result {
+    flex: 1;
+    padding-left: 50px;
+    margin-right: 50px; }
+    main .result .score,
+    main .result .ranking {
+      color: #FFFFFF; }
+      main .result .score h1,
+      main .result .ranking h1 {
+        margin-bottom: 0; }
+    main .result .gold {
+      text-align: right;
+      font-weight: bold;
+      font-size: 60px;
+      background: linear-gradient(#E3B12C, #E9C928, #FFFFFF, #E9C928, #E3B12C);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; }
+    main .result .num {
+      font-size: 100px; }
+
+/*# sourceMappingURL=style.css.map */

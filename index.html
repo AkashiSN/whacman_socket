@@ -2,66 +2,50 @@
 <html>
   <head>
     <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="../css/style.css">
   </head>
   <body>
-    <span id="name"></span>
-    <span id="score">0</span>p
-    <br>
-    <span id="timer">60''00</span>
+    <header class="global-header">
+      <div class="header-wrapper">
+        <div class="header-content">
+          <div class="player-info">
+            <div class="message">ゲームのカードを落としてす、しまったのですが！</div>
+            <div id="js-name" class="name">匿名</div>
+          </div>
+        </div>
+        <div class="header-content">
+          <div class="playing-info">
+            <img src="../images/speaker.png" class="speaker">
+            <div class="playing-wrapper">
+              <div class="playing" id="js-clear">PLAYING...</div>
+            </div>
+            <img src="../images/speaker.png" class="speaker">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="character">
+        <img src="../images/character.png">
+      </div>
+      <div class="result">
+        <div class="score">
+          <h1>SCORE</h1>
+          <div id="js-score" class="gold num">0</div>
+        </div>
+        <div class="ranking">
+          <h1>TIME LIMIT</h1>
+          <!-- <div class="gold"><span class="num">0</span> 位</div> -->
+          <div class="gold"><span class="num" id="timer">60''00</span></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- <span id="timer">60''00</span> -->
 
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
-
-    <script>
-      const playerId = window.location.pathname.match(/\/players\/(.*)/)[1]
-      const uri = window.location.origin
-      axios.get(uri + '/api/players/' + playerId)
-        .then(function(res) {
-          setPlayerInfo(res.data);
-        })
-        .catch(function(err) {
-          console.log(err);
-        })
-      var socket = io();
-      socket.on('reflect scores', function(player) {
-        if(player._id == playerId) {
-          setPlayerInfo(player);
-        }
-      });
-
-      function setPlayerInfo(player) {
-        document.getElementById('name').innerHTML = player.name;
-        document.getElementById('score').innerHTML = player.score;
-      }
-
-      function formatTime(mseconds) {
-        let msec = Math.floor(mseconds % 100)
-        let sec  = Math.floor(mseconds / 100)
-        if(msec < 10) { msec = '0' + msec }
-        if(sec < 10) { sec = '0' + sec }
-        return sec + "''" + msec
-      }
-
-      function countDown(count) {
-        socket.emit('start', 1);
-        var countup = function() {
-          document.getElementById('timer').innerHTML = formatTime(count--);
-        }
-        var id = setInterval(function() {
-          countup();
-          if(count < 0) {
-            clearInterval(id);
-            socket.emit('stop', 1);
-          }
-        }, 10);
-      }
-
-      countDown(6000);
-
-      // TODO:
-      // カウントダウン開始時にAPI叩く
-      // カウントダウン終了時にAPI叩く
-    </script>
-
+    <script src="../js/index.js"></script>
   </body>
 </html>

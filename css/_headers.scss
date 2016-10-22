@@ -1,0 +1,96 @@
+.global-header {
+  height: 15%;
+  background-color: $pink;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  margin: auto 5%;
+  padding: 0 2%;
+  font-weight: bold;
+  position: relative;
+
+  .header-wrapper {
+    display: flex;
+    position: absolute;
+    width: 95%;
+    top: 40%;
+  }
+
+  .header-content {
+    flex: 2;
+    background-color: $dark-yellow;
+    background: linear-gradient($yellow, $dark-yellow);
+    border: 2px solid $black;
+    border-radius: 3px;
+    margin-right: 20px;
+
+    &:last-child {
+      flex: 3;
+      margin-right: 0;
+    }
+
+    .player-info {
+      border: 1px solid $black;
+      background-color: $dark-green;
+      border-radius: 2px;
+      margin: 5px 30px;
+
+      .message {
+        background-color: $white;
+        margin: 5px 10px;
+        padding: 5px;
+        border-radius: 2px;
+        color: $black;
+        font-size: small;
+        text-align: center;
+        height: 17px;
+        overflow: hidden;
+      }
+
+      .name {
+        margin: 5px 10px;
+        border-bottom: 2px solid $white;
+        color: $white;
+        text-align: center;
+      }
+    }
+
+    .playing-info {
+      position: relative;
+
+      .playing-wrapper {
+        background-color: $black;
+        position: absolute;
+        top: 0;
+        left: 67px;
+        right: 67px;
+        height: 60px;
+        padding: 10px 20px;
+
+        .playing {
+          background: linear-gradient(to right, $dark-yellow, $light-yellow);
+          height: 60px;
+          color: $white;
+          -webkit-text-stroke: 1px #000;
+          font-size: 40px;
+          line-height: 60px;
+          text-align: center;
+          letter-spacing: 2px;
+        }
+      }
+
+      .speaker {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 80px;
+
+        &:last-child {
+          position: absolute;
+          left: auto;
+          right: 0;
+        }
+      }
+    }
+  }
+}
+

@@ -1,5 +1,6 @@
 var fs         = require('fs');
-var app        = require('express')();
+var express    = require('express');
+var app        = express();
 var http       = require('http').Server(app);
 var io         = require('socket.io')(http);
 var bodyParser = require('body-parser');
@@ -22,6 +23,9 @@ var Player = mongoose.model('Player', PlayerSchema);
 // POSTでdataを受け取るための記述
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use('/css', express.static('css'));
+app.use('/js', express.static('js'));
+app.use('/images', express.static('images'));
 
 app.get('/api/players', function(req, res){
     Player.find(function(err, players) {
@@ -85,6 +89,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/players/:player_id', function(req, res) {
+  console.log(req.url);
   res.sendfile('index.html');
 });
 
