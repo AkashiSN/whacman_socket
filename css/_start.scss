@@ -1,0 +1,38 @@
+main {
+  #name,
+  #message {
+    width: calc(100% - 40px);
+    padding: 10px 20px;
+    border: 0;
+    font-weight: bold;
+    font-size: 60px;
+
+    &:focus {
+      outline: 4px solid $yellow;
+    }
+  }
+
+  #start {
+    background-color: $yellow;
+    color: $black;
+    border: 0;
+    width: 100%;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    padding: 10px;
+
+    &:focus {
+      outline: 0;
+      background-color: $black;
+      color: $yellow;
+    }
+  }
+
+  .note {
+    color: $yellow;
+    margin-top: 30px;
+    text-align: center;
+  }
+}

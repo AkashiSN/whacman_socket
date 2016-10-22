@@ -71,15 +71,6 @@
           left: auto;
           right: 0; }
 
-html {
-  background-color: #E3B12C;
-  background: linear-gradient(#E9C928, #E3B12C);
-  height: 100%; }
-
-body {
-  height: 100vh;
-  margin: 0; }
-
 main {
   display: flex;
   background-color: #010101;
@@ -109,7 +100,8 @@ main {
   main .result {
     flex: 1;
     padding-left: 50px;
-    margin-right: 50px; }
+    margin-right: 50px;
+    margin-bottom: 30px; }
     main .result .score,
     main .result .ranking {
       color: #FFFFFF; }
@@ -125,5 +117,43 @@ main {
       -webkit-text-fill-color: transparent; }
     main .result .num {
       font-size: 100px; }
+
+main #name,
+main #message {
+  width: calc(100% - 40px);
+  padding: 10px 20px;
+  border: 0;
+  font-weight: bold;
+  font-size: 60px; }
+  main #name:focus,
+  main #message:focus {
+    outline: 4px solid #E9C928; }
+main #start {
+  background-color: #E9C928;
+  color: #010101;
+  border: 0;
+  width: 100%;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  padding: 10px; }
+  main #start:focus {
+    outline: 0;
+    background-color: #010101;
+    color: #E9C928; }
+main .note {
+  color: #E9C928;
+  margin-top: 30px;
+  text-align: center; }
+
+html {
+  background-color: #E3B12C;
+  background: linear-gradient(#E9C928, #E3B12C);
+  height: 100%; }
+
+body {
+  height: 100vh;
+  margin: 0; }
 
 /*# sourceMappingURL=style.css.map */

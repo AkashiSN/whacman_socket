@@ -2,44 +2,50 @@
 <html>
   <head>
     <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="../css/style.css">
   </head>
   <body>
-    <input id="name"></input>
-    <button id="start">START</button>
+    <header class="global-header">
+      <div class="header-wrapper">
+        <div class="header-content">
+          <div class="player-info">
+            <div class="message">チュウニズムだと思った？残念、whacmanでした！</div>
+            <div class="name">whacman</div>
+          </div>
+        </div>
+        <div class="header-content">
+          <div class="playing-info">
+            <img src="../images/speaker.png" class="speaker">
+            <div class="playing-wrapper">
+              <div class="playing">READY...</div>
+            </div>
+            <img src="../images/speaker.png" class="speaker">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="character">
+        <img src="../images/character.png">
+      </div>
+      <div class="result">
+        <div class="score">
+          <h1><label for="name">NAME</label></h1>
+          <input id="name"></input>
+        </div>
+        <div class="ranking">
+          <h1>MESSAGE</h1>
+          <input id="message"></input>
+        </div>
+
+        <p class="note">STARTを押すと、すぐにはじまります</p>
+        <button id="start">START</button>
+      </div>
+    </main>
 
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
-
-    <script>
-      var socket = io();
-      document.getElementById('start').addEventListener('click', function(e) {
-        if(!document.getElementById('name').value.length) {
-          alert('名前を入力してください');
-        } else {
-          var name = document.getElementById('name').value
-          const uri = window.location.origin
-          socket.emit('start', name);
-          axios.post(uri + '/api/players', {
-              name: name
-            })
-            .then(function(res) {
-              axios.get(uri + '/api/players')
-                .then(function(res) {
-                  res.data.reverse().forEach(function(player) {
-                    console.log(player.name)
-                    if(player.name == name) {
-                      window.location.href = uri + '/players/' + player._id;
-                    }
-                  });
-                })
-                .catch(function(err) {
-                  console.log(err);
-                })
-            })
-         }
-      })
-</script>
-
+    <script src="../js/start.js"></script>
   </body>
 </html>
-
