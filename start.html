@@ -17,17 +17,18 @@
           alert('名前を入力してください');
         } else {
           var name = document.getElementById('name').value
+          const uri = window.location.origin
           socket.emit('start', name);
-          axios.post('https://whacman-socket.herokuapp.com/api/players', {
+          axios.post(uri + '/api/players', {
               name: name
             })
             .then(function(res) {
-              axios.get('https://whacman-socket.herokuapp.com/api/players')
+              axios.get(uri + '/api/players')
                 .then(function(res) {
                   res.data.reverse().forEach(function(player) {
                     console.log(player.name)
                     if(player.name == name) {
-                      window.location.href = 'https://whacman-socket.herokuapp.com/players/' + player._id;
+                      window.location.href = uri + '/players/' + player._id;
                     }
                   });
                 })

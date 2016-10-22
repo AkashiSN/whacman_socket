@@ -14,7 +14,8 @@
 
     <script>
       const playerId = window.location.pathname.match(/\/players\/(.*)/)[1]
-      axios.get('https://whacman-socket.herokuapp.com/api/players/' + playerId)
+      const uri = window.location.origin
+      axios.get(uri + '/api/players/' + playerId)
         .then(function(res) {
           setPlayerInfo(res.data);
         })
