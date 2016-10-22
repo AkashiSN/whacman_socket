@@ -39,6 +39,7 @@ app.post('/api/players', function(req, res) {
     var player = new Player();
 
     player.name = req.body.name;
+    player.message = req.body.message;
     player.score = 0;
 
     player.save(function(err) {
