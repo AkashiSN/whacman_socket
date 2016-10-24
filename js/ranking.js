@@ -1,44 +1,44 @@
 const uri = window.location.origin
 
-function reloadRanking() {
+const reloadRanking = () => {
   axios.get(uri + '/api/players/ranking')
-    .then(function(res) {
-      setRanking(res.data);
+    .then((res) => {
+      setRanking(res.data)
     })
-    .catch(function(err) {
-      console.log(err);
+    .catch((err) => {
+      console.log(err)
     })
 }
 
-function escapeHTML(str) {
-  return str.replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
-};
+const escapeHTML = (str) => {
+  return str.replace(/&/g, '&amp')
+            .replace(/</g, '&lt')
+            .replace(/>/g, '&gt')
+            .replace(/"/g, '&quot')
+            .replace(/'/g, '&#39')
+}
 
-function setRanking(players) {
-  var table = document.getElementById('ranking-table')
-    table.innerHTML = ''
+const setRanking = (players) => {
+  const table = document.getElementById('ranking-table')
+  table.innerHTML = ''
 
   Array.prototype.forEach.apply(
     players,
     [function(player, i ,a) {
-      var result = document.createElement('li')
-      var wrapper = document.createElement('div')
+      const result = document.createElement('li')
+      const wrapper = document.createElement('div')
       wrapper.className = 'wrapper'
-      var rank = document.createElement('div')
+      const rank = document.createElement('div')
       rank.className = 'rank'
-      var num = i + 1
+      const num = i + 1
       rank.innerHTML = num.toString()
-      var score = document.createElement('div')
+      const score = document.createElement('div')
       score.className = 'score'
       score.innerHTML = player.score
-      var name = document.createElement('div')
+      const name = document.createElement('div')
       name.className = 'name'
       name.innerHTML = escapeHTML(player.name || '')
-      var message = document.createElement('div')
+      const message = document.createElement('div')
       message.className = 'message'
       message.innerHTML = escapeHTML(player.message || '')
       wrapper.appendChild(rank)
@@ -51,10 +51,10 @@ function setRanking(players) {
   )
 }
 
-reloadRanking();
+reloadRanking()
 
-var socket = io();
+const socket = io()
 
-socket.on('reflect scores', function(player) {
-  reloadRanking();
-});
+socket.on('reflect scores', (player) => {
+  reloadRanking()
+})

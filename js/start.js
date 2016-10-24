@@ -1,29 +1,28 @@
-var socket = io();
+const socket = io()
 
-document.getElementById('start').addEventListener('click', function(e) {
+document.getElementById('start').addEventListener('click', (e) => {
   if(!document.getElementById('name').value.length) {
-    alert('名前を入力してください');
+    alert('名前を入力してください')
   } else {
-    var name = document.getElementById('name').value
-    var message = document.getElementById('message').value
+    const name = document.getElementById('name').value
+    const message = document.getElementById('message').value
     const uri = window.location.origin
-    socket.emit('start', name);
     axios.post(uri + '/api/players', {
         name: name,
         message: message,
       })
-      .then(function(res) {
+      .then((res) => {
         axios.get(uri + '/api/players')
-          .then(function(res) {
-            res.data.reverse().forEach(function(player) {
+          .then((res) => {
+            res.data.reverse().forEach((player) => {
               console.log(player.name)
               if(player.name == name) {
-                window.location.href = uri + '/players/' + player._id;
+                window.location.href = uri + '/players/' + player._id
               }
-            });
+            })
           })
-          .catch(function(err) {
-            console.log(err);
+          .catch((err) => {
+            console.log(err)
           })
       })
    }
