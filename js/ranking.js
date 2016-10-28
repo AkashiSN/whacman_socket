@@ -34,7 +34,7 @@ const setRanking = (players) => {
       rank.innerHTML = num.toString()
       const score = document.createElement('div')
       score.className = 'score'
-      score.innerHTML = player.score
+      score.innerHTML = player.score.toLocaleString()
       const name = document.createElement('div')
       name.className = 'name'
       name.innerHTML = escapeHTML(player.name || '')
