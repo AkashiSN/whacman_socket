@@ -19,14 +19,24 @@ main {
     width: 100%;
     font-size: 40px;
     font-weight: bold;
+    border: 2px solid $yellow;
     letter-spacing: 2px;
     margin-bottom: 30px;
     padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
 
     &:focus {
       outline: 0;
       background-color: $black;
       color: $yellow;
+    }
+
+    &:hover,
+    &:active {
+      background-color: $black;
+      color: $yellow;
+      border: 2px solid $yellow;
     }
   }
 

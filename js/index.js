@@ -1,6 +1,9 @@
 const playerId = window.location.pathname.match(/\/players\/(.*)/)[1]
 const uri = window.location.origin
 
+const footer = document.getElementById('footer')
+footer.style.display = 'none'
+
 axios.get(uri + '/api/players/' + playerId)
   .then((res) => {
     setPlayerInfo(res.data)
@@ -96,6 +99,8 @@ const displayRank = (ranknum, target) => {
    rank.appendChild(unit)
    target.innerHTML = ''
    target.appendChild(rank)
+   const footer = document.getElementById('footer')
+   footer.style.display = 'block'
 }
 
-countDown(6000)
+countDown(200)

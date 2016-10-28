@@ -75,7 +75,7 @@
 main {
   display: flex;
   background-color: #010101;
-  margin: 80px auto;
+  margin: 80px auto 40px;
   padding: 0 5%;
   position: relative; }
   main:before, main:after {
@@ -136,17 +136,48 @@ main #start {
   width: 100%;
   font-size: 40px;
   font-weight: bold;
+  border: 2px solid #E9C928;
   letter-spacing: 2px;
   margin-bottom: 30px;
-  padding: 10px; }
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s; }
   main #start:focus {
     outline: 0;
     background-color: #010101;
     color: #E9C928; }
+  main #start:hover, main #start:active {
+    background-color: #010101;
+    color: #E9C928;
+    border: 2px solid #E9C928; }
 main .note {
   color: #E9C928;
   margin-top: 30px;
   text-align: center; }
+
+.global-footer .buttons {
+  text-align: center;
+  margin: auto auto 20px; }
+  .global-footer .buttons a {
+    text-decoration: none; }
+  .global-footer .buttons button {
+    background-color: #010101;
+    color: #E9C928;
+    border: 2px solid #010101;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: auto 20px;
+    cursor: pointer;
+    transition: 0.3s; }
+    .global-footer .buttons button:focus {
+      outline: 0;
+      background-color: #010101;
+      color: #E9C928; }
+    .global-footer .buttons button:hover, .global-footer .buttons button:active {
+      background-color: #E9C928;
+      color: #010101;
+      border: 2px solid #010101; }
 
 html {
   background-color: #E3B12C;

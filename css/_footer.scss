@@ -1,0 +1,35 @@
+.global-footer {
+  .buttons {
+    text-align: center;
+    margin: auto auto 20px;
+
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      background-color: $black;
+      color: $yellow;
+      border: 2px solid $black;
+      font-size: 30px;
+      font-weight: bold;
+      padding: 10px 20px;
+      margin: auto 20px;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:focus {
+        outline: 0;
+        background-color: $black;
+        color: $yellow;
+      }
+
+      &:hover,
+      &:active {
+        background-color: $yellow;
+        color: $black;
+        border: 2px solid $black;
+      }
+    }
+  }
+}
