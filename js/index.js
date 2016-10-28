@@ -98,4 +98,4 @@ const displayRank = (ranknum, target) => {
    target.appendChild(rank)
 }
 
-countDown(300)
+countDown(6000)
