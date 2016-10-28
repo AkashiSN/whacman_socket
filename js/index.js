@@ -103,4 +103,4 @@ const displayRank = (ranknum, target) => {
    footer.style.display = 'block'
 }
 
-countDown(200)
+countDown(6000)

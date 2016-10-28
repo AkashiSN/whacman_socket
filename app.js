@@ -48,7 +48,7 @@ app.get('/api/players', (req, res) => {
 app.get('/api/players/ranking', (req, res) => {
   Player.find((err, players) => {
     if(err) res.send(err)
-    res.json(sortByKey(players, 'score'))
+    res.json(sortByKey(players, 'score').slice(0, 20))
   })
 })
 
