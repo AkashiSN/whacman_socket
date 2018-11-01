@@ -4,7 +4,9 @@ const app        = express()
 const http       = require('http').Server(app)
 const io         = require('socket.io')(http)
 const bodyParser = require('body-parser')
-const axios      = require('axios')
+
+var status = false
+var player_id = null
 
 const sortByKey= (data, key) => {
   data = data.sort((a, b) => {
@@ -73,17 +75,24 @@ app.get('/api/players/:player_id', (req, res) => {
 })
 
 app.put('/api/players/:player_id', (req, res) => {
-  Player.findById(req.params.player_id, (err, player) => {
-    if(err) res.send(err)
-    player.name = req.body.name || player.name
-    if(req.body.hit)
-      player.score = player.score + 100
-    player.save((err) => {
+  if (!status)
+  res.json({message: 'time out'})
+  else if (!(player_id === req.params.player_id)){
+    res.json({message: 'game has ended'})
+  }
+  else{
+    Player.findById(req.params.player_id, (err, player) => {
       if(err) res.send(err)
-      res.json({ message: 'Player updated!' })
+      player.name = req.body.name || player.name
+      if(req.body.hit)
+        player.score = player.score + 100
+      player.save((err) => {
+        if(err) res.send(err)
+        res.json({ message: 'Player updated!' })
+      })
+      io.emit('reflect scores', player)
     })
-    io.emit('reflect scores', player)
-  })
+  }
 })
 
 app.delete('/api/players/:player_id', (req, res) => {
@@ -113,29 +122,14 @@ io.on('connection', (socket) => {
   })
 
   socket.on('start', (msg, id) => {
-    axios.post('http://localhost:4000/api/timer', {
-      start: 1,
-      player_id: id
-    })
-      .then((res) => {
-        console.log('start success')
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    status = true
+    player_id = id
     console.log('start', msg, id)
   })
 
   socket.on('stop', (msg) => {
-    axios.post('http://localhost:4000/api/timer', {
-      stop: 1
-    })
-      .then((res) => {
-        console.log('stop success')
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    status = false
+    player_id = null
     console.log('stop', msg)
   })
 })
