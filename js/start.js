@@ -12,18 +12,11 @@ document.getElementById('start').addEventListener('click', (e) => {
         message: message,
       })
       .then((res) => {
-        axios.get(uri + '/api/players')
-          .then((res) => {
-            res.data.reverse().forEach((player) => {
-              console.log(player.name)
-              if(player.name == name) {
-                window.location.href = uri + '/players/' + player._id
-              }
-            })
-          })
-          .catch((err) => {
-            console.log(err)
-          })
+        console.log(res.data)
+        var player = res.data
+        if(player.name == name) {
+          window.location.href = uri + '/players/' + player._id
+        }
       })
    }
 })

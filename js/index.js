@@ -76,10 +76,12 @@ const blinkAndDisplayRank = (target, limit) => {
           score = parseInt(score.split(',').join('').trim())
           res.data.some((player, i) => {
             if(player.score < score) {
-                ranknum = i
-                displayRank(ranknum, target)
-                return true
+              ranknum = i
+              displayRank(ranknum, target)
+              return true
             }
+            const footer = document.getElementById('footer')
+            footer.style.display = 'block'
           })
         })
         .catch((err) => {
@@ -99,8 +101,6 @@ const displayRank = (ranknum, target) => {
    rank.appendChild(unit)
    target.innerHTML = ''
    target.appendChild(rank)
-   const footer = document.getElementById('footer')
-   footer.style.display = 'block'
 }
 
-countDown(6000)
+countDown(1000)

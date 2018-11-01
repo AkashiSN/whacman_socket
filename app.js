@@ -4,7 +4,7 @@ const app        = express()
 const http       = require('http').Server(app)
 const io         = require('socket.io')(http)
 const bodyParser = require('body-parser')
-
+const axios = require('axios')
 var status = false
 var player_id = null
 
@@ -32,6 +32,16 @@ PlayerSchema.pre("save", function(next){
 })
 PlayerSchema.plugin(autoIncrement.plugin, 'Test')
 const Player = mongoose.model('Player', PlayerSchema)
+
+Player.find((err, players) => {
+  if (players.length === 0){
+    var player = new Player()
+    player.name = "test"
+    player.message = "test"
+    player.score = 0
+    player.save()
+  }
+});
 
 // POSTでdataを受け取るための記述
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -63,7 +73,7 @@ app.post('/api/players', (req, res) => {
 
   player.save(function(err) {
     if(err) res.send(err)
-    res.json({ message: 'Player created!' })
+    res.json(player)
   })
 })
 
@@ -124,12 +134,31 @@ io.on('connection', (socket) => {
   socket.on('start', (msg, id) => {
     status = true
     player_id = id
+    axios.post('http://localhost:4000/api/timer', {
+      start: 1,
+      player_id: id
+    })
+      .then((res) => {
+        console.log('start success')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     console.log('start', msg, id)
   })
 
   socket.on('stop', (msg) => {
     status = false
-    player_id = null
+    player_id = -1
+    axios.post('http://localhost:4000/api/timer', {
+      stop: 1
+    })
+      .then((res) => {
+        console.log('stop success')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     console.log('stop', msg)
   })
 })
